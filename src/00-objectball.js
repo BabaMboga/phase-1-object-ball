@@ -118,3 +118,47 @@ function gameObject() {
 }
 
 console.log(gameObject());
+
+function homeTeamName(){
+    let object = gameObject()
+    return object['home']['teamName']
+}
+
+console.log(homeTeamName())
+
+function numPointsScored(playerName){
+    let game = gameObject();
+    for (let gameKey in game){
+        let teamObj = game[gameKey];
+        for (let teamKey in teamObj){
+            let playerObj = teamObj[teamKey];
+            for (let key in playerObj){
+                if (key === playerName){
+                    return playerObj[key].points;
+                } 
+            }
+        }
+    }
+
+    return undefined ; 
+}
+
+console.log(numPointsScored("Ben Gordon"));
+
+function shoeSize(playerName){
+    let game = gameObject();
+    for (let gameKey in game) {
+        let teamObj = game[gameKey];
+        for (let teamKey in teamObj){
+            let playerObj = teamObj[teamKey];
+            for (let key in playerObj) {
+                if ( key === playerName) {
+                    return playerObj[key].shoe;
+                }
+            }
+        }
+    }
+}
+
+console.log(shoeSize("Mason Plumlee"));
+
