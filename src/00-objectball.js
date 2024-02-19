@@ -256,3 +256,24 @@ function bigShoeRebounds() {
 
 console.log(bigShoeRebounds());
 
+function mostPointsScored() {
+    let game = gameObject();
+    let mostPoints = 0 ;
+    let playerWithMostPoints = null;
+
+    for (let teamKey in game) {
+        let teamObj = game[teamKey];
+        for (let playerName in teamObj.players) {
+            let playerObj = teamObj.players[playerName];
+            if (playerObj.points > mostPoints) {
+                mostPoints = playerObj.points;
+                playerWithMostPoints = playerName;
+            }
+        }
+    }
+
+    return playerWithMostPoints;
+}
+
+console.log(mostPointsScored());
+
