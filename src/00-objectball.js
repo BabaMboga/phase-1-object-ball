@@ -199,11 +199,10 @@ function playerNumbers(team) {
         
         let teamObj = game[gameKey]
         if (teamObj.teamName === team) {
-            for (let teamKey in teamObj) {
-                let playerObj = teamObj[teamKey]
-                for (let player in playerObj) {
-                    jerseyNumbers.push(playerObj[player].number)
-                }
+            for (let playerName in teamObj.players) {
+                let playerObj = teamObj.players[playerName]
+                
+                jerseyNumbers.push(playerObj.number);
             }
         }
     }
@@ -212,3 +211,48 @@ function playerNumbers(team) {
 }
 
 console.log(playerNumbers("Brooklyn Nets"));
+
+function playerStats(playerName){
+    let game = gameObject();
+    for (let gameKey in game) {
+        let teamObj = game[gameKey];
+        for (let teamKey in teamObj) {
+            let playerObj = teamObj[teamKey]
+            for (let key in playerObj) {
+                if (key === playerName) {
+                    const stats = playerObj[key];
+                    return stats
+                }
+            }
+        }
+    }
+    return undefined
+}
+
+console.log(playerStats("Alan Anderson"));
+
+function bigShoeRebounds() {
+    let game = gameObject();
+    let largestShoeSize = 0 ;
+    let playerWithLargestShoe = null ;
+
+    for (let teamKey in game) {
+        let teamObj = game[teamKey];
+        for (let playerName in teamObj.players) {
+            let playerObj = teamObj.players[playerName];
+            if (playerObj.shoe > largestShoeSize) {
+                largestShoeSize = playerObj.shoe;
+                playerWithLargestShoe = playerObj;
+            }
+        }
+    }
+
+    if (playerWithLargestShoe) {
+        return playerWithLargestShoe.rebounds;
+    } else {
+        return "No player found";
+    }
+}
+
+console.log(bigShoeRebounds());
+
