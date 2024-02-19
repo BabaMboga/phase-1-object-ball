@@ -308,3 +308,56 @@ function winningTeam() {
 
 console.log(winningTeam());
 
+function playerWithLongestName() {
+    let game = gameObject();
+    let longestName = "";
+    let playerWithLongestName = null ;
+
+    // Find the player with the longest name
+    for (let teamKey in game) {
+        let teamObj = game[teamKey];
+        for (let playerName in teamObj.players) {
+            if (playerName.length > longestName.length) {
+                longestName = playerName;
+                playerWithLongestName = playerName;
+            }
+        }
+    }
+    return playerWithLongestName;
+}
+
+console.log(playerWithLongestName());
+
+function doesLongNameStealATon() {
+    let game = gameObject();
+    let playerWithLongestName = playerWithLongestName();
+
+    // Find the number of steals for the player with the longest name
+
+    let stealsLongestName = 0;
+    for (let teamKey in game) {
+        let teamObj = game[teamKey];
+        for (let playerName in teamObj.players) {
+            if (playerName === playerWithLongestName) {
+                stealsLongestName = teamObj.players[playerName] .steals;
+            }
+        }
+    }
+
+    // Find the player with the most steals
+    let mostSteals = 0;
+    for (let teamKey in game) {
+        let teamObj = game[teamKey];
+        for (let playerName in teamObj.players) {
+            let playerObj = teamObj.players[playerName];
+            if (playerObj.steals > mostSteals) {
+                mostSteals = playerObj.steals;
+            }
+        }
+    }
+
+    return stealsLongestName === mostSteals;
+}
+
+console.log(doesLongNameStealATon());
+
