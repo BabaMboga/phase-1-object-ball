@@ -277,3 +277,34 @@ function mostPointsScored() {
 
 console.log(mostPointsScored());
 
+function winningTeam() {
+    let game = gameObject();
+    let teamPoints = {};
+
+    // Calculate total points for each team
+    for (let teamKey in game) {
+        let teamObj = game[teamKey];
+        let totalPoints = 0;
+        for (let playerName in teamObj.players) {
+            let playerObj = teamObj.players[playerName];
+            totalPoints += playerObj.points;
+        }
+
+        teamPoints[teamObj.teamName] = totalPoints;
+    }
+
+    // Find the team with the most points
+    let maxPoints = 0;
+    let winningTeam = null;
+    for (let teamName in teamPoints) {
+        if (teamPoints[teamName] > maxPoints) {
+            maxPoints = teamPoints[teamName];
+            winningTeam = teamName;
+        }
+    }
+
+    return winningTeam;
+}
+
+console.log(winningTeam());
+
