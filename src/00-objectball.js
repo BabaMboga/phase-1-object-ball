@@ -158,7 +158,57 @@ function shoeSize(playerName){
             }
         }
     }
+
+    return undefined;
 }
 
 console.log(shoeSize("Mason Plumlee"));
 
+function teamColors (teamName){
+    let game = gameObject();
+    for (let gameKey in game){
+        let teamObj = game[gameKey];
+        if (teamObj.teamName === teamName) {
+            return teamObj.colors;
+        }
+    }
+
+    return undefined;
+}
+
+console.log(teamColors("Charlotte Hornets"));
+
+function teamNames (game) {
+    const teamNames = []
+    for (let gameKey in game) {
+        
+        let teamObj = game[gameKey];
+        teamNames.push(teamObj.teamName);
+        
+    }
+
+    return teamNames
+}
+
+console.log(teamNames(gameObject()));
+
+function playerNumbers(team) {
+    const jerseyNumbers = [];
+    let game = gameObject();
+    for (let gameKey in game) {
+        
+        let teamObj = game[gameKey]
+        if (teamObj.teamName === team) {
+            for (let teamKey in teamObj) {
+                let playerObj = teamObj[teamKey]
+                for (let player in playerObj) {
+                    jerseyNumbers.push(playerObj[player].number)
+                }
+            }
+        }
+    }
+
+    return jerseyNumbers
+}
+
+console.log(playerNumbers("Brooklyn Nets"));
